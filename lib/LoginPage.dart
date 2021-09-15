@@ -15,6 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Digital Dukaan',
       theme: ThemeData(
         primarySwatch: Colors.green,

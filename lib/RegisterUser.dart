@@ -15,6 +15,7 @@ class _RegisterUserState extends State<RegisterUser> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Digital Dukaan',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
