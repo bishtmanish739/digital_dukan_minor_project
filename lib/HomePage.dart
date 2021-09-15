@@ -10,6 +10,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      ' Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Profile',
+      style: optionStyle,
+    ),
+    Text(
+      'My Cart',
+      style: optionStyle,
+    ),
+  ];
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -26,7 +42,7 @@ class _HomePageState extends State<HomePage> {
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {},
                 child: Icon(
                   Icons.search,
@@ -35,14 +51,14 @@ class _HomePageState extends State<HomePage> {
               )),
           Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {},
-                child: Icon(Icons.more_vert),
+                child: Icon(Icons.settings),
               )),
         ],
       ),
       body: Container(
-        child: Text('Welcome To Digital Dukaan'),
+        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

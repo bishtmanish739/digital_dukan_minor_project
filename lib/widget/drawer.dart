@@ -7,7 +7,12 @@ class Drawer1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.green,
+      decoration: BoxDecoration(
+        color: Colors.green,
+        border:
+            Border.all(color: Colors.black, width: 2, style: BorderStyle.solid),
+        borderRadius: BorderRadius.circular(20),
+      ),
       width: 250,
       child: ListView(
         padding: EdgeInsets.zero,
