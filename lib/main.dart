@@ -1,4 +1,4 @@
-import 'package:digital_dukan_minor_project/HomePage.dart';
+import 'package:digital_dukan_minor_project/LoginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Digital Dukaan',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -30,10 +31,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Introshown = GetStorage();
-  void OnDone(context) {
+  final introshown = GetStorage();
+  void onDone(context) {
     Navigator.pop(context);
-    Navigator.of(context).push(MaterialPageRoute(builder: (_) => HomePage()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => LoginPage()));
   }
 
   @override
@@ -95,10 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           onDone: () {
-            OnDone(context);
+            onDone(context);
           },
           onSkip: () {
-            OnDone(context);
+            onDone(context);
           },
           pages: [
             PageViewModel(

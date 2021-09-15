@@ -11,18 +11,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Digital Dukaan',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text('Digital Dukaan')),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("Digital Dukaan")),
-        ),
-        body: Container(
-          child: Center(child: Text('This is Home Page')),
-        ),
+      body: Container(
+        child: Text('Welcome To Digital Dukaan'),
       ),
     );
   }
