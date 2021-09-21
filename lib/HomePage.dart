@@ -12,7 +12,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  double s = 60;
+  double initial = 60;
+
+  static List<Widget> _widgetOptions = <Widget>[
     Text(
       ' Home',
       style: optionStyle,
@@ -26,9 +29,10 @@ class _HomePageState extends State<HomePage> {
       style: optionStyle,
     ),
   ];
-  int _selectedIndex = 0;
+  static int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
+      s = initial + 10;
       _selectedIndex = index;
     });
   }
@@ -61,19 +65,21 @@ class _HomePageState extends State<HomePage> {
         child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              size: _selectedIndex == 0 ? 60 : 20,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person, size: _selectedIndex == 1 ? 60 : 20),
             label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart,
-            ),
+            icon:
+                Icon(Icons.shopping_cart, size: _selectedIndex == 2 ? 60 : 20),
             label: 'Cart',
           ),
         ],

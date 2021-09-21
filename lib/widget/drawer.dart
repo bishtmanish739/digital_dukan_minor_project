@@ -1,39 +1,114 @@
+import 'package:digital_dukan_minor_project/Homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
-class Drawer1 extends StatelessWidget {
+class Drawer1 extends StatefulWidget {
   const Drawer1({Key? key}) : super(key: key);
 
+  @override
+  State<Drawer1> createState() => _Drawer1State();
+}
+
+class _Drawer1State extends State<Drawer1> {
+  static List<Widget> _widgetOptions = <Widget>[
+    Text(
+      ' Home',
+    ),
+    Text(
+      'Profile',
+    ),
+    Text(
+      'My Cart',
+    ),
+    Text(
+      ' Home',
+    ),
+    Text(
+      'Profile',
+    ),
+    Text(
+      'My Cart',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.green,
-        border:
-            Border.all(color: Colors.black, width: 2, style: BorderStyle.solid),
+        border: Border.all(
+            color: Colors.white12, width: 2, style: BorderStyle.solid),
         borderRadius: BorderRadius.circular(20),
       ),
       width: 250,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.greenAccent),
-            child: Text('Drawer Header'),
+          Container(
+              margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+              height: 180,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(
+                    Icons.person_rounded,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                  Center(
+                    child: Text(
+                      'Dukandaar singh',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.white,
+                    thickness: 2,
+                  )
+                ],
+              )),
+          ListTile(
+            title: Text(
+              'Home',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {},
+            leading: Icon(Icons.home, color: Colors.white),
           ),
           ListTile(
-            title: const Text('Item 1'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
+            title: Text(
+              'Nearby Shop',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {},
+            leading: Icon(Icons.shop, color: Colors.white),
           ),
           ListTile(
-            title: const Text('Item 2'),
-            onTap: () {
-              // Update the state of the app.
-              // ...
-            },
+            title: Text(
+              'My Cart',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {},
+            leading: Icon(Icons.shopping_cart, color: Colors.white),
+          ),
+          ListTile(
+            title: Text(
+              'Setting ',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {},
+            leading: Icon(Icons.settings, color: Colors.white),
+          ),
+          ListTile(
+            title: Text(
+              'Share This App',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {},
+            leading: Icon(Icons.share, color: Colors.white),
           ),
         ],
       ),

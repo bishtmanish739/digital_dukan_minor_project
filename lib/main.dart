@@ -1,6 +1,7 @@
 import 'package:digital_dukan_minor_project/Homepage.dart';
 import 'package:digital_dukan_minor_project/LoginPage.dart';
 import 'package:digital_dukan_minor_project/RegisterUser.dart';
+import 'package:digital_dukan_minor_project/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(
-              title: "digital dukaan",
-            ),
+        '/': (context) => SplashScreen(),
         '/login': (context) => LoginPage(),
         '/ragister': (contaxt) => RegisterUser(),
         '/home': (context) => HomePage()
