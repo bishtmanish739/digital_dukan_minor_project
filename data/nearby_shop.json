@@ -1,0 +1,92 @@
+{
+    "shops": [
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Tuck_Shop_in_Oxford.jpg/1280px-Tuck_Shop_in_Oxford.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Aryan General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://img.etimg.com/thumb/width-640,height-480,imgsize-339811,resizemode-1,msid-76097015/industry/cons-products/fmcg/over-7-lakh-small-stores-may-have-shut-shop-due-to-lockdown/kirana.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://media.mg.co.za/wp-media/2019/02/4393768a-price-is-king-in-clash-of-the-spazas-696x445.jpeg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Tuck_Shop_in_Oxford.jpg/1280px-Tuck_Shop_in_Oxford.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://img.etimg.com/thumb/width-640,height-480,imgsize-339811,resizemode-1,msid-76097015/industry/cons-products/fmcg/over-7-lakh-small-stores-may-have-shut-shop-due-to-lockdown/kirana.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://media.mg.co.za/wp-media/2019/02/4393768a-price-is-king-in-clash-of-the-spazas-696x445.jpeg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Tuck_Shop_in_Oxford.jpg/1280px-Tuck_Shop_in_Oxford.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://img.etimg.com/thumb/width-640,height-480,imgsize-339811,resizemode-1,msid-76097015/industry/cons-products/fmcg/over-7-lakh-small-stores-may-have-shut-shop-due-to-lockdown/kirana.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://media.mg.co.za/wp-media/2019/02/4393768a-price-is-king-in-clash-of-the-spazas-696x445.jpeg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Tuck_Shop_in_Oxford.jpg/1280px-Tuck_Shop_in_Oxford.jpg"
+        
+      },
+      {
+        "id": "1",
+        "name": "Darshpreet General Store",
+        "phone": "+919876543210",
+        "address":"d-96, 38 , kotabag, 120098 , Delhi",
+        "shopimage":"https://img.etimg.com/thumb/width-640,height-480,imgsize-339811,resizemode-1,msid-76097015/industry/cons-products/fmcg/over-7-lakh-small-stores-may-have-shut-shop-due-to-lockdown/kirana.jpg"
+        
+      }
+    ]
+  }
