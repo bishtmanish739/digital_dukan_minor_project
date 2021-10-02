@@ -1,3 +1,4 @@
+import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/customer_home.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,10 +23,7 @@ class _HomePageState extends State<HomePage> {
       'Profile',
       style: optionStyle,
     ),
-    Text(
-      'My Cart',
-      style: optionStyle,
-    ),
+    CustomerCart(),
   ];
   static int _selectedIndex = 0;
   void _onItemTapped(int index) {
