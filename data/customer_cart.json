@@ -1,0 +1,62 @@
+{
+    "items": [
+      {
+        "id": "1",
+        "name": "Toothpaste",
+        "image":"https://d3hjf51r9j54j7.cloudfront.net/wp-content/uploads/sites/7/2015/12/Toothpaste3-620x330.jpg",
+        "price":100,
+        "quantity":1
+    
+
+      },
+      {
+        "id": "1",
+        "name": "Soap",
+        "image":"https://www.simpleskincare.com/sk-eu/content/dam/brands/lifebuoy/india/2133695-lifebuoy-innovation-total-soap-wrapper-125g---total-10.png",
+        "price":10,
+        "quantity":10
+    
+
+      },
+      {
+        "id": "1",
+        "name": "Suger",
+        "image":"https://www.tasteofhome.com/wp-content/uploads/2019/11/sugar-shutterstock_615908132.jpg?fit=700,800",
+        "price":50,
+        "quantity":1
+    
+
+      },
+    
+        {
+          "id": "1",
+          "name": "Toothpaste",
+          "image":"https://d3hjf51r9j54j7.cloudfront.net/wp-content/uploads/sites/7/2015/12/Toothpaste3-620x330.jpg",
+          "price":100,
+          "quantity":1
+      
+  
+        },
+        {
+          "id": "1",
+          "name": "Soap",
+          "image":"https://www.simpleskincare.com/sk-eu/content/dam/brands/lifebuoy/india/2133695-lifebuoy-innovation-total-soap-wrapper-125g---total-10.png",
+          "price":10,
+          "quantity":10
+      
+  
+        },
+        {
+          "id": "1",
+          "name": "Suger",
+          "image":"https://www.tasteofhome.com/wp-content/uploads/2019/11/sugar-shutterstock_615908132.jpg?fit=700,800",
+          "price":50,
+          "quantity":1
+      
+  
+        }
+
+      
+    
+    ]
+  }
