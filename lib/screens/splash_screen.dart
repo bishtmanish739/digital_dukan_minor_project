@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:digital_dukan_minor_project/main.dart';
 import 'package:flutter/material.dart';
+import 'intro_slides/intro_slides.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,12 +10,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.pop(context);
       Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => MyHomePage(
+          builder: (_) => IntroSlides(
                 title: "digital dukaan",
               )));
     });
