@@ -16,7 +16,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         try {
           emit(RegisterLoading());
           registerRepo.validateData(event.registerModel);
-          registerRepo.registerOwner(event.registerModel, event.context);
+          registerRepo.sendOTP(event.registerModel, event.context);
         } catch (e) {
           emit(RegisterMessage(e.toString()));
         }
