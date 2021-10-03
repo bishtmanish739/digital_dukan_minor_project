@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digital_dukan_minor_project/bloc/register_bloc/register_bloc.dart';
+import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/models/register_model.dart';
 import 'package:digital_dukan_minor_project/models/user_type.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterRepo {
@@ -38,7 +38,7 @@ class RegisterRepo {
   }
 
   Future registerOwner(
-      RegisterModel registerModel, BuildContext context) async {
+      RegisterModel registerModel) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference reference = registerModel.type == UserType.owner
         ? firestore.collection('owners')
@@ -49,26 +49,25 @@ class RegisterRepo {
           .doc(registerModel.phoneNumber)
           .set(registerModel.toJson())
           .then((value) =>
-              BlocProvider.of<RegisterBloc>(context).add(UserCreated()))
-          .catchError((onError) => BlocProvider.of<RegisterBloc>(context)
-              .add(UserRegisterErrorMessage(onError.toString())));
+              BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(UserCreated()))
+          .catchError((onError) => throw Exception(onError));
     } else {
-      BlocProvider.of<RegisterBloc>(context).add(
+      BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(
           UserRegisterErrorMessage("User already exists with this number"));
     }
   }
 
   Future<void> sendOTP(
-      RegisterModel ownerRegisterModel, BuildContext context) async {
+      RegisterModel ownerRegisterModel ) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+91 ${ownerRegisterModel.phoneNumber}',
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {
-        BlocProvider.of<RegisterBloc>(context).add(UserRegisterErrorMessage(
+        BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(UserRegisterErrorMessage(
             "Phone number verification failed, please try again later"));
       },
       codeSent: (String verificationId, int? resendToken) {
-        BlocProvider.of<RegisterBloc>(context)
+        BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context)
             .add(VerificationCodeSent(verificationId, ownerRegisterModel));
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
