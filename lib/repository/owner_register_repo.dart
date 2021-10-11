@@ -37,8 +37,7 @@ class RegisterRepo {
     }
   }
 
-  Future registerOwner(
-      RegisterModel registerModel) async {
+  Future registerOwner(RegisterModel registerModel) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference reference = registerModel.type == UserType.owner
         ? firestore.collection('owners')
@@ -49,22 +48,26 @@ class RegisterRepo {
           .doc(registerModel.phoneNumber)
           .set(registerModel.toJson())
           .then((value) =>
-              BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(UserCreated()))
+              BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context)
+                  .add(UserCreated()))
           .catchError((onError) => throw Exception(onError));
     } else {
       BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(
           UserRegisterErrorMessage("User already exists with this number"));
     }
+
+    box.put('phone', registerModel.phoneNumber);
+    box.put('type', registerModel.type);
   }
 
-  Future<void> sendOTP(
-      RegisterModel ownerRegisterModel ) async {
+  Future<void> sendOTP(RegisterModel ownerRegisterModel) async {
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+91 ${ownerRegisterModel.phoneNumber}',
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {
-        BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(UserRegisterErrorMessage(
-            "Phone number verification failed, please try again later"));
+        BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context).add(
+            UserRegisterErrorMessage(
+                "Phone number verification failed, please try again later"));
       },
       codeSent: (String verificationId, int? resendToken) {
         BlocProvider.of<RegisterBloc>(navigatorKey.currentState!.context)

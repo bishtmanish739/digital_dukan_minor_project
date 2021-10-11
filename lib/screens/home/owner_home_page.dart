@@ -1,24 +1,23 @@
 import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/customer_home.dart';
+import 'package:digital_dukan_minor_project/screens/owner_products/owner_products.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class OwnerHomePage extends StatefulWidget {
+  const OwnerHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _OwnerHomePageState createState() => _OwnerHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _OwnerHomePageState extends State<OwnerHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  double s = 60;
-  double initial = 60;
 
   static List<Widget> _widgetOptions = <Widget>[
-    CustomerHome(),
+    OwnerProducts(),
     Text(
       'Profile',
       style: optionStyle,
@@ -36,22 +35,27 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer1(),
-      body: Container(
-        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: <Widget>[
+          OwnerProducts(),
+          OwnerProducts(),
+          OwnerProducts(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "Products",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_rounded),
             label: "Profile",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: "Cart",
+            icon: Icon(Icons.notifications),
+            label: "Orders",
           ),
         ],
         currentIndex: _selectedIndex,
