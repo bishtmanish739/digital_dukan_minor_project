@@ -31,7 +31,8 @@ class CustomerRegister extends StatelessWidget {
                 .showSnackBar(SnackBar(content: Text(state.message)));
           }
           if (state is RegisterLoaded) {
-            Navigator.pushNamed(context, '/home');
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                '/home', (Route<dynamic> route) => false);
           }
           if (state is RegisterCodeSent) {
             Navigator.push(

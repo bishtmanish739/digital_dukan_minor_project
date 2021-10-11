@@ -14,7 +14,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<RegisterEvent>((event, emit) {
       if (event is Register) {
         try {
-          emit(RegisterLoading()); 
+          emit(RegisterLoading());
           registerRepo.validateData(event.registerModel);
           registerRepo.sendOTP(event.registerModel);
         } catch (e) {
@@ -23,11 +23,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       } else if (event is VerificationCompleted) {
         emit(RegisterMessage("Phone number verified"));
         emit(RegisterLoading());
-        try{
-          
-        registerRepo.registerOwner(event.registerModel);
-        }
-        catch(e){
+        try {
+          registerRepo.registerOwner(event.registerModel);
+        } catch (e) {
           emit(RegisterMessage(e.toString()));
         }
       } else if (event is UserCreated) {

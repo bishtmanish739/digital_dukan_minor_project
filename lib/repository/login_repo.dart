@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/models/login_model.dart';
 import 'package:digital_dukan_minor_project/models/user_type.dart';
 
@@ -22,5 +23,7 @@ class LoginRepo {
       if (data['password'] != loginModel.password)
         throw Exception("Wrong password");
     }
+    box.put('phone', loginModel.phoneNumber);
+    box.put('type', loginModel.type);
   }
 }
