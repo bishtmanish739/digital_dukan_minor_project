@@ -4,10 +4,22 @@ import 'package:digital_dukan_minor_project/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BuyProducts extends StatelessWidget {
+class BuyProducts extends StatefulWidget {
   final String shopId;
   const BuyProducts(this.shopId);
 
+  @override
+  State<BuyProducts> createState() => _BuyProductsState();
+}
+
+class _BuyProductsState extends State<BuyProducts> {
+  @override
+  void initState() {
+
+          BlocProvider.of<FetchProductsBloc>(context)
+              .add(FetchListOfProducts(widget.shopId));    
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +29,7 @@ class BuyProducts extends StatelessWidget {
       body: RefreshIndicator(
         onRefresh: () async {
           BlocProvider.of<FetchProductsBloc>(context)
-              .add(FetchListOfProducts(shopId));
+              .add(FetchListOfProducts(widget.shopId));
         },
         child: BlocConsumer<FetchProductsBloc, FetchProductsState>(
           listener: (context, state) {
