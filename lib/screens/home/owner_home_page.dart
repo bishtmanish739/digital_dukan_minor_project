@@ -1,5 +1,4 @@
 import 'package:digital_dukan_minor_project/customer_cart.dart';
-import 'package:digital_dukan_minor_project/customer_home.dart';
 import 'package:digital_dukan_minor_project/screens/owner_products/owner_products.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';

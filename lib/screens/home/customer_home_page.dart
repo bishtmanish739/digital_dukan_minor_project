@@ -1,24 +1,25 @@
 import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/customer_home.dart';
+import 'package:digital_dukan_minor_project/screens/list_of_shops/list_of_shops.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class CustomerHomePage extends StatefulWidget {
+  const CustomerHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _CustomerHomePageState createState() => _CustomerHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _CustomerHomePageState extends State<CustomerHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   double s = 60;
   double initial = 60;
 
   static List<Widget> _widgetOptions = <Widget>[
-    CustomerHome(),
+    ListOfShops(),
     Text(
       'Profile',
       style: optionStyle,

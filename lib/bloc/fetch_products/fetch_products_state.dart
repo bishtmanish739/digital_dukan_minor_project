@@ -11,7 +11,6 @@ class FetchProductsLoaded extends FetchProductsState {
   final List<Product> productsList;
 
   FetchProductsLoaded(this.productsList);
-
 }
 
 class FetchProductsError extends FetchProductsState {

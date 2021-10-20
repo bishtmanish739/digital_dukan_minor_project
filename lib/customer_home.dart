@@ -24,8 +24,6 @@ class _CustomerHomeState extends State<CustomerHome> {
 
   @override
   void initState() {
-   
-
     super.initState();
     readJson();
   }

@@ -11,7 +11,7 @@ class FetchProductsBloc extends Bloc<FetchProductsEvent, FetchProductsState> {
   FetchProductsBloc(this.fetchProductRepo) : super(FetchProductsInitial()) {
     on<FetchProductsEvent>((event, emit) async {
       if (event is FetchListOfProducts) {
-        try {          
+        try {
           emit(FetchProductsLoading());
           List<Product> productsList =
               await fetchProductRepo.getListOfProducts(event.shop);

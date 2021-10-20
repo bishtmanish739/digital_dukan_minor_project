@@ -11,7 +11,6 @@ class ProductDetailsLoaded extends ProductDetailsInitial {
   final String image;
 
   ProductDetailsLoaded(this.image);
-
 }
 
 class ProductDetailsError extends ProductDetailsInitial {

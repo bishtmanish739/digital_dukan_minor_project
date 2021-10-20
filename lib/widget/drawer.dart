@@ -1,3 +1,4 @@
+import 'package:digital_dukan_minor_project/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -10,26 +11,6 @@ class Drawer1 extends StatefulWidget {
 }
 
 class _Drawer1State extends State<Drawer1> {
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      ' Home',
-    ),
-    Text(
-      'Profile',
-    ),
-    Text(
-      'My Cart',
-    ),
-    Text(
-      ' Home',
-    ),
-    Text(
-      'Profile',
-    ),
-    Text(
-      'My Cart',
-    ),
-  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,6 +88,20 @@ class _Drawer1State extends State<Drawer1> {
               style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
+            leading: Icon(Icons.share, color: Colors.white),
+          ),
+          ListTile(
+            title: Text(
+              'Logout',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              box.delete('phone');
+              box.delete('type');
+
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/initialScreen', (Route<dynamic> route) => false);
+            },
             leading: Icon(Icons.share, color: Colors.white),
           ),
         ],
