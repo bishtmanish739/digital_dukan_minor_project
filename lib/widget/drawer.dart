@@ -13,14 +13,7 @@ class Drawer1 extends StatefulWidget {
 class _Drawer1State extends State<Drawer1> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.green,
-        border: Border.all(
-            color: Colors.white12, width: 2, style: BorderStyle.solid),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      width: 250,
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -33,19 +26,16 @@ class _Drawer1State extends State<Drawer1> {
                   Icon(
                     Icons.person_rounded,
                     size: 50,
-                    color: Colors.white,
                   ),
                   Center(
                     child: Text(
-                      'Dukandaar singh',
+                      box.get('name'),
                       style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                   Divider(
-                    color: Colors.white,
                     thickness: 2,
                   )
                 ],
@@ -53,48 +43,43 @@ class _Drawer1State extends State<Drawer1> {
           ListTile(
             title: Text(
               'Home',
-              style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
-            leading: Icon(Icons.home, color: Colors.white),
+            leading: Icon(Icons.home,),
           ),
           ListTile(
             title: Text(
               'Nearby Shop',
-              style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
-            leading: Icon(Icons.shop, color: Colors.white),
+            leading: Icon(Icons.shop,),
           ),
           ListTile(
             title: Text(
               'My Cart',
-              style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
-            leading: Icon(Icons.shopping_cart, color: Colors.white),
+            leading: Icon(Icons.shopping_cart),
           ),
           ListTile(
             title: Text(
               'Setting ',
-              style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
-            leading: Icon(Icons.settings, color: Colors.white),
+            leading: Icon(Icons.settings,),
           ),
           ListTile(
             title: Text(
               'Share This App',
-              style: TextStyle(color: Colors.white),
             ),
             onTap: () {},
-            leading: Icon(Icons.share, color: Colors.white),
+            leading: Icon(Icons.share,),
           ),
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(color: Colors.white),
             ),
+            leading: Icon(Icons.logout,),
             onTap: () {
               box.delete('phone');
               box.delete('type');
@@ -102,7 +87,6 @@ class _Drawer1State extends State<Drawer1> {
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/initialScreen', (Route<dynamic> route) => false);
             },
-            leading: Icon(Icons.share, color: Colors.white),
           ),
         ],
       ),

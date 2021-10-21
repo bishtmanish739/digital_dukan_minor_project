@@ -40,85 +40,91 @@ class _BuyProductsState extends State<BuyProducts> {
           },
           builder: (context, state) {
             if (state is FetchProductsLoaded)
-              return Container(
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-                  itemCount: state.productsList.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      child: Card(
-                        margin: EdgeInsets.all(5),
-                        elevation: 10,
-                        child: Container(
-                          height: 150,
+              return state.productsList.length==0?Center(child: Text("No products found"),):Expanded(
+                child: Container(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width /
+                (MediaQuery.of(context).size.height/1.4),),
+                        
+                    itemCount: state.productsList.length,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        child: Card(
                           margin: EdgeInsets.all(5),
-                          child: Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.fromLTRB(5, 5, 0, 0),
-                                padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
-                                width: 100,
-                                child: Container(
-                                  padding: EdgeInsets.all(5),
-                                  height: 100,
-                                  child: CachedNetworkImage(
-                                    width: 300,
-                                    height: 200,
-                                    imageUrl: API.getImageURL(
-                                        state.productsList[index].image),
-                                    progressIndicatorBuilder: (context, url,
-                                            downloadProgress) =>
-                                        CircularProgressIndicator(
-                                            value: downloadProgress.progress),
-                                    errorWidget: (context, url, error) =>
-                                        Icon(Icons.error),
+                          elevation: 10,
+                          child: Container(
+                            height: 150,
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+                                  width: 100,
+                                  child: Container(
+                                    padding: EdgeInsets.all(5),
+                                    height: 100,
+                                    child: CachedNetworkImage(
+                                      width: 300,
+                                      height: 200,
+                                      imageUrl: API.getImageURL(
+                                          state.productsList[index].image),
+                                      progressIndicatorBuilder: (context, url,
+                                              downloadProgress) =>
+                                          CircularProgressIndicator(
+                                              value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      state.productsList[index].name,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          "Price: " +
-                                              state.productsList[index].price +
-                                              " ₹ ",
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14),
-                                        ),
-                                        Text(
-                                          "Qty: " +
-                                              state
-                                                  .productsList[index].quantity,
-                                          style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 12),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        state.productsList[index].name,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            "Price: " +
+                                                state.productsList[index].price +
+                                                " ₹ ",
+                                            style: TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 14),
+                                          ),
+                                          Text(
+                                            "Qty: " +
+                                                state
+                                                    .productsList[index].quantity,
+                                            style: TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 12),
+                                          )
+                                        ],
+                                      ),
+                                      ElevatedButton(onPressed: ()=>{}, child: Text("Add to Cart"))
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               );
             else if (state is FetchProductsLoading)

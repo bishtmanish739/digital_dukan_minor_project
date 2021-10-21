@@ -56,6 +56,7 @@ class RegisterRepo {
           UserRegisterErrorMessage("User already exists with this number"));
     }
 
+    box.put('name', registerModel.name);
     box.put('phone', registerModel.phoneNumber);
     box.put('type', registerModel.type);
   }

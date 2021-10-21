@@ -1,5 +1,6 @@
 import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/customer_home.dart';
+import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/screens/list_of_shops/list_of_shops.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,6 +37,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: customerDrawerKey,
       drawer: Drawer1(),
       body: Container(
         child: Center(child: _widgetOptions.elementAt(_selectedIndex)),

@@ -25,6 +25,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+GlobalKey<ScaffoldState> customerDrawerKey = new GlobalKey<ScaffoldState>();
+GlobalKey<ScaffoldState> ownerDrawerKey = new GlobalKey<ScaffoldState>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await registerHive();

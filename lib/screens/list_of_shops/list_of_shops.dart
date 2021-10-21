@@ -1,4 +1,5 @@
 import 'package:digital_dukan_minor_project/bloc/list_of_shops/list_of_shops_bloc.dart';
+import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/screens/buy_products/buy_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,18 @@ class _ListOfShopsState extends State<ListOfShops> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Nearby Shops"),
+                   leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  size: 28,
+                ),
+                onPressed: () {
+                  customerDrawerKey.currentState!.openDrawer();
+                },
+              ),
+            )
         ),
         body: Container(
           child: BlocBuilder<ListOfShopsBloc, ListOfShopsState>(
