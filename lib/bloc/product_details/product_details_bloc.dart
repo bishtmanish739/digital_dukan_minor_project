@@ -18,8 +18,8 @@ class ProductDetailsBloc
           productDetailsRepo.validate(event.product);
           String location =
               await productDetailsRepo.uploadProduct(event.product);
-          if(event.image!=null)
-          await productDetailsRepo.uploadPic(event.image, location);
+          if (event.image != null)
+            await productDetailsRepo.uploadPic(event.image, location);
           event.product.image = location;
           emit(ProductDetailsLoaded(event.product.image));
         } catch (e) {

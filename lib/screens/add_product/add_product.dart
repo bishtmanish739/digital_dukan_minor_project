@@ -67,7 +67,7 @@ class _AddProductState extends State<AddProduct> {
               margin: EdgeInsets.all(8),
               child: Column(
                 children: <Widget>[
-                  widget.product.image == "" || _image !=null
+                  widget.product.image == "" || _image != null
                       ? Center(
                           child: InkWell(
                             onTap: () {
