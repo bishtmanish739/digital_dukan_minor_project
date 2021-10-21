@@ -22,8 +22,10 @@ class LoginRepo {
       Map<String, dynamic> data = snapShot.data() as Map<String, dynamic>;
       if (data['password'] != loginModel.password)
         throw Exception("Wrong password");
-    }
-    box.put('phone', loginModel.phoneNumber);
+           box.put('phone', loginModel.phoneNumber);
     box.put('type', loginModel.type);
+    box.put('name', data['name']);
+    }
+ 
   }
 }
