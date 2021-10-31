@@ -28,7 +28,8 @@ class _AddProductState extends State<AddProduct> {
   final ImagePicker _picker = ImagePicker();
   // Capture a photo
   _imgFromCamera() async {
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera, imageQuality: 10);
+    final XFile? photo =
+        await _picker.pickImage(source: ImageSource.camera, imageQuality: 10);
 
     setState(() {
       _image = photo;
@@ -36,7 +37,8 @@ class _AddProductState extends State<AddProduct> {
   }
 
   _imgFromGallery() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 10);
+    final XFile? image =
+        await _picker.pickImage(source: ImageSource.gallery, imageQuality: 10);
 
     setState(() {
       _image = image;

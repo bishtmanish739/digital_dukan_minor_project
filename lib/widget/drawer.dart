@@ -30,9 +30,8 @@ class _Drawer1State extends State<Drawer1> {
                   Center(
                     child: Text(
                       box.get('name'),
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Divider(
@@ -45,14 +44,18 @@ class _Drawer1State extends State<Drawer1> {
               'Home',
             ),
             onTap: () {},
-            leading: Icon(Icons.home,),
+            leading: Icon(
+              Icons.home,
+            ),
           ),
           ListTile(
             title: Text(
               'Nearby Shop',
             ),
             onTap: () {},
-            leading: Icon(Icons.shop,),
+            leading: Icon(
+              Icons.shop,
+            ),
           ),
           ListTile(
             title: Text(
@@ -66,20 +69,26 @@ class _Drawer1State extends State<Drawer1> {
               'Setting ',
             ),
             onTap: () {},
-            leading: Icon(Icons.settings,),
+            leading: Icon(
+              Icons.settings,
+            ),
           ),
           ListTile(
             title: Text(
               'Share This App',
             ),
             onTap: () {},
-            leading: Icon(Icons.share,),
+            leading: Icon(
+              Icons.share,
+            ),
           ),
           ListTile(
             title: Text(
               'Logout',
             ),
-            leading: Icon(Icons.logout,),
+            leading: Icon(
+              Icons.logout,
+            ),
             onTap: () {
               box.delete('phone');
               box.delete('type');

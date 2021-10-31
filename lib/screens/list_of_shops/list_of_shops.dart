@@ -22,8 +22,8 @@ class _ListOfShopsState extends State<ListOfShops> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Nearby Shops"),
-                   leading: Padding(
+            title: Text("Nearby Shops"),
+            leading: Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 icon: Icon(
@@ -34,8 +34,7 @@ class _ListOfShopsState extends State<ListOfShops> {
                   customerDrawerKey.currentState!.openDrawer();
                 },
               ),
-            )
-        ),
+            )),
         body: Container(
           child: BlocBuilder<ListOfShopsBloc, ListOfShopsState>(
             builder: (context, state) {
