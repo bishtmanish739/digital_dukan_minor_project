@@ -1,6 +1,7 @@
 import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/customer_home.dart';
 import 'package:digital_dukan_minor_project/main.dart';
+import 'package:digital_dukan_minor_project/screens/cart_screen/cart_screen.dart';
 import 'package:digital_dukan_minor_project/screens/list_of_shops/list_of_shops.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
       'Profile',
       style: optionStyle,
     ),
-    CustomerCart(),
+    CartScreen(),
   ];
   static int _selectedIndex = 0;
   void _onItemTapped(int index) {

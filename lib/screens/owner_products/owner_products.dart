@@ -31,20 +31,19 @@ class _OwnerProductsState extends State<OwnerProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Products"),
-             leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  size: 28,
-                ),
-                onPressed: () {
-                  ownerDrawerKey.currentState!.openDrawer();
-                },
+          title: Text("Your Products"),
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              icon: Icon(
+                Icons.menu,
+                size: 28,
               ),
-            )
-      ),
+              onPressed: () {
+                ownerDrawerKey.currentState!.openDrawer();
+              },
+            ),
+          )),
       floatingActionButton: FloatingActionButton(
         heroTag: null,
         child: Icon(Icons.add),
