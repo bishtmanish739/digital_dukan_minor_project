@@ -32,21 +32,23 @@ class _MyOrdersState extends State<MyOrders> {
         },
         builder: (context, state) {
           if (state is FetchOrdersLoaded)
-            return Container(
-              child: ListView.builder(
-                  itemCount: state.list.length,
-                  itemBuilder: (context, index) {
-                    return Container(
+            return ListView.builder(
+                scrollDirection: Axis.vertical,
+    shrinkWrap: true,
+                itemCount: state.list.length,
+                itemBuilder: (context, index) {
+                  return Expanded(
+                    child: Container(
                       margin: const EdgeInsets.all(8.0),
                       child: Card(
                         elevation: 4,
                         child: Container(
                           margin: const EdgeInsets.all(4.0),
-                          child: Row(
+                          child: Column(
                             children: [
                               ListTile(
-                                title:
-                                    Text(state.list[index].shopModel!.shopName),
+                                title: Text(
+                                    state.list[index].shopModel!.shopName),
                                 subtitle: Text("Order status: " +
                                     state.list[index].orderStatus
                                         .toString()
@@ -56,20 +58,40 @@ class _MyOrdersState extends State<MyOrders> {
                                         .toString()),
                               ),
                               ExpansionTile(
-                                title: Text('Click to view products'),
-                                trailing: Icon(
-                                  Icons.keyboard_arrow_down,
-                                  color: Colors.black,
-                                  size: 30,
-                                ),
-                              )
+                                  title: Text('Click to view products'),
+                                  trailing: Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Colors.black,
+                                    size: 30,
+                                  ),
+                                  children: <Widget>[
+                                    ListView.builder(    shrinkWrap: true,
+
+                                        itemCount: state
+                                            .list[index].products.length,
+                                        itemBuilder: (context, prodIndex) {
+                                          return ListTile(
+                                              title: Text(state
+                                                  .list[index]
+                                                  .products[prodIndex]
+                                                  .name),
+                                              subtitle: Text(state
+                                                  .list[index]
+                                                  .products[prodIndex]
+                                                  .price + " Rs"),
+                                              trailing: Text("Qty: " +state
+                                                  .list[index]
+                                                  .products[prodIndex]
+                                                  .quantity));
+                                        })
+                                  ])
                             ],
                           ),
                         ),
                       ),
-                    );
-                  }),
-            );
+                    ),
+                  );
+                });
           if (state is FetchOrdersError) {
             return Container(
               child: Text(state.message),
