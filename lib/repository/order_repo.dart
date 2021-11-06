@@ -20,8 +20,9 @@ class OrderRepo {
     CollectionReference owners = firestore.collection('owners');
 
     List<OrderModel> list = [];
-    final querySnapshot =
-        await orders.where(isShopOwner?'shopId':'userId', isEqualTo: box.get('phone')).get();
+    final querySnapshot = await orders
+        .where(isShopOwner ? 'shopId' : 'userId', isEqualTo: box.get('phone'))
+        .get();
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
       ShopModel? shop;
@@ -30,10 +31,21 @@ class OrderRepo {
         shop = new ShopModel(
             map["shopName"], Address.fromJson(map['address']), doc.id);
       }).catchError((onError) => throw Exception(onError));
-      OrderModel p = new OrderModel.fromJson(map);
+      OrderModel p = new OrderModel.fromJson(map, doc.id);
       p.shopModel = shop!;
       list.add(p);
     }
     return list;
+  }
+
+  Future updateOrderStatus(OrderModel order) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference orders = firestore.collection('orders');
+    await orders
+        .doc(order.id!)
+        .set(order)
+        .then((value) => {})
+        .catchError((onError) => throw Exception(onError.toString()));
+        return;
   }
 }

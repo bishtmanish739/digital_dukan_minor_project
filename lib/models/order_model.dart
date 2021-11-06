@@ -9,6 +9,7 @@ enum Payment { cash, upi }
 
 @JsonSerializable(explicitToJson: true)
 class OrderModel {
+  String? id;
   String shopId;
   String userId;
   List<Product> products;
@@ -18,7 +19,10 @@ class OrderModel {
 
   OrderModel(
       this.userId, this.shopId, this.products, this.orderStatus, this.payment);
-  factory OrderModel.fromJson(Map<String, dynamic> json) =>
-      _$OrderModelFromJson(json);
+  OrderModel.withId(
+    this.id,
+      this.userId, this.shopId, this.products, this.orderStatus, this.payment);
+  factory OrderModel.fromJson(Map<String, dynamic> json,String id) =>
+      _$OrderModelFromJson(json,id);
   Map<String, dynamic> toJson() => _$OrderModelToJson(this);
 }

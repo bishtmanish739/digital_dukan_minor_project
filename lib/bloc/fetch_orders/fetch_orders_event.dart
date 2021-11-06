@@ -8,3 +8,10 @@ class FetchOrders extends FetchOrdersEvent {
 
   FetchOrders(this.isShopOwner);
 }
+
+class ChangeOrderStatus extends FetchOrdersEvent {
+  final Status status;
+  final int index;
+
+  ChangeOrderStatus(this.status,this.index);
+}
