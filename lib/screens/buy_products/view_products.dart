@@ -174,15 +174,15 @@ class _ViewProductState extends State<ViewProduct> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                           onPressed: () {
-                                Product cart = new Product(
-                                    widget.product.image,
-                                    widget.product.name,
-                                    widget.product.price,
-                                    dropdownValue);
+                            Product cart = new Product(
+                                widget.product.image,
+                                widget.product.name,
+                                widget.product.price,
+                                dropdownValue);
 
-                                BlocProvider.of<CartBloc>(context)
-                                    .add(CartEventAdd(cart, widget.shopId));
-                              },
+                            BlocProvider.of<CartBloc>(context)
+                                .add(CartEventAdd(cart, widget.shopId));
+                          },
                           child: Text("Add to Cart")),
                     )
                   ],

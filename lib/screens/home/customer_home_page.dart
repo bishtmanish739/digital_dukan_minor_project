@@ -3,6 +3,7 @@ import 'package:digital_dukan_minor_project/customer_home.dart';
 import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/screens/cart_screen/cart_screen.dart';
 import 'package:digital_dukan_minor_project/screens/list_of_shops/list_of_shops.dart';
+import 'package:digital_dukan_minor_project/screens/my_orders/my_orders.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
       style: optionStyle,
     ),
     CartScreen(),
+    MyOrders(),
   ];
   static int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -56,6 +58,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            label: "Orders",
           ),
         ],
         currentIndex: _selectedIndex,
