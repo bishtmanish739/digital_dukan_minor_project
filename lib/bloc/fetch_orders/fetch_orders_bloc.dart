@@ -12,7 +12,7 @@ class FetchOrdersBloc extends Bloc<FetchOrdersEvent, FetchOrdersState> {
     on<FetchOrdersEvent>((event, emit) async {
       if (event is FetchOrders) {
         try {
-          List<OrderModel> list = await orderRepo.fetchOrders();
+          List<OrderModel> list = await orderRepo.fetchOrders(event.isShopOwner);
           emit(FetchOrdersLoaded(list));
         } catch (e) {
           emit(FetchOrdersError(e.toString()));

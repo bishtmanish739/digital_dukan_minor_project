@@ -14,14 +14,14 @@ class OrderRepo {
         .catchError((onError) => throw Exception(onError));
   }
 
-  Future<List<OrderModel>> fetchOrders() async {
+  Future<List<OrderModel>> fetchOrders(bool isShopOwner) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference orders = firestore.collection('orders');
     CollectionReference owners = firestore.collection('owners');
 
     List<OrderModel> list = [];
     final querySnapshot =
-        await orders.where('userId', isEqualTo: box.get('phone')).get();
+        await orders.where(isShopOwner?'shopId':'userId', isEqualTo: box.get('phone')).get();
     for (var doc in querySnapshot.docs) {
       Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
       ShopModel? shop;

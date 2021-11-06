@@ -28,7 +28,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
       style: optionStyle,
     ),
     CartScreen(),
-    MyOrders(),
+    MyOrders(false),
   ];
   static int _selectedIndex = 0;
   void _onItemTapped(int index) {

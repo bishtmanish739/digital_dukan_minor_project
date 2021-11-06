@@ -1,10 +1,11 @@
 import 'package:digital_dukan_minor_project/bloc/fetch_orders/fetch_orders_bloc.dart';
-import 'package:digital_dukan_minor_project/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyOrders extends StatefulWidget {
-  const MyOrders({Key? key}) : super(key: key);
+  final bool isShopOwner;
+
+  const MyOrders(this.isShopOwner);
 
   @override
   State<MyOrders> createState() => _MyOrdersState();
@@ -13,7 +14,7 @@ class MyOrders extends StatefulWidget {
 class _MyOrdersState extends State<MyOrders> {
   @override
   void initState() {
-    BlocProvider.of<FetchOrdersBloc>(context).add(FetchOrders());
+    BlocProvider.of<FetchOrdersBloc>(context).add(FetchOrders(widget.isShopOwner));
     super.initState();
   }
 
@@ -34,7 +35,7 @@ class _MyOrdersState extends State<MyOrders> {
           if (state is FetchOrdersLoaded)
             return ListView.builder(
                 scrollDirection: Axis.vertical,
-    shrinkWrap: true,
+                shrinkWrap: true,
                 itemCount: state.list.length,
                 itemBuilder: (context, index) {
                   return Expanded(
@@ -47,8 +48,8 @@ class _MyOrdersState extends State<MyOrders> {
                           child: Column(
                             children: [
                               ListTile(
-                                title: Text(
-                                    state.list[index].shopModel!.shopName),
+                                title:
+                                    Text(state.list[index].shopModel!.shopName),
                                 subtitle: Text("Order status: " +
                                     state.list[index].orderStatus
                                         .toString()
@@ -65,26 +66,72 @@ class _MyOrdersState extends State<MyOrders> {
                                     size: 30,
                                   ),
                                   children: <Widget>[
-                                    ListView.builder(    shrinkWrap: true,
-
-                                        itemCount: state
-                                            .list[index].products.length,
+                                    ListView.builder(
+                                        shrinkWrap: true,
+                                        itemCount:
+                                            state.list[index].products.length,
                                         itemBuilder: (context, prodIndex) {
                                           return ListTile(
-                                              title: Text(state
-                                                  .list[index]
-                                                  .products[prodIndex]
-                                                  .name),
+                                              title: Text(state.list[index]
+                                                  .products[prodIndex].name),
                                               subtitle: Text(state
-                                                  .list[index]
-                                                  .products[prodIndex]
-                                                  .price + " Rs"),
-                                              trailing: Text("Qty: " +state
-                                                  .list[index]
-                                                  .products[prodIndex]
-                                                  .quantity));
-                                        })
-                                  ])
+                                                      .list[index]
+                                                      .products[prodIndex]
+                                                      .price +
+                                                  " Rs"),
+                                              trailing: Text("Qty: " +
+                                                  state
+                                                      .list[index]
+                                                      .products[prodIndex]
+                                                      .quantity));
+                                        }),
+                                  ]),
+                                              widget.isShopOwner?Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                          ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        shape: new RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.green),
+                            borderRadius: new BorderRadius.circular(8.0))),
+                    onPressed: () {
+                    },
+                    child: Row(
+                      children: [
+                        new Text(
+                          "Accept Order",
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left:4.0),
+                          child: Icon(Icons.check),
+                        )
+                      ],
+                    ),
+                  ),
+                         ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.red,
+                        shape: new RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.red),
+                            borderRadius: new BorderRadius.circular(8.0))),
+                    onPressed: () {
+                    },
+                    child: Row(children: [
+                       new Text(
+                      "Reject Order",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                    Padding(
+   padding: const EdgeInsets.only(left:4.0),                   
+   
+      child: Icon(Icons.close),
+                    )
+                    ],)
+                  ),
+                                        ],):Container()
+                            
                             ],
                           ),
                         ),
@@ -97,7 +144,7 @@ class _MyOrdersState extends State<MyOrders> {
               child: Text(state.message),
             );
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );
