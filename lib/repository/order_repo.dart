@@ -43,9 +43,9 @@ class OrderRepo {
     CollectionReference orders = firestore.collection('orders');
     await orders
         .doc(order.id!)
-        .set(order)
+        .set(order.toJson())
         .then((value) => {})
         .catchError((onError) => throw Exception(onError.toString()));
-        return;
+    return;
   }
 }

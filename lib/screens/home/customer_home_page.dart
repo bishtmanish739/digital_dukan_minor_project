@@ -42,8 +42,17 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
     return Scaffold(
       key: customerDrawerKey,
       drawer: Drawer1(),
-      body: Container(
-        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: <Widget>[
+          ListOfShops(),
+          Text(
+            'Profile',
+            style: optionStyle,
+          ),
+          CartScreen(),
+          MyOrders(false),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[

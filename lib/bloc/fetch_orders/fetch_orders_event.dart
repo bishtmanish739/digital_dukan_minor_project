@@ -13,5 +13,5 @@ class ChangeOrderStatus extends FetchOrdersEvent {
   final Status status;
   final int index;
 
-  ChangeOrderStatus(this.status,this.index);
+  ChangeOrderStatus(this.status, this.index);
 }

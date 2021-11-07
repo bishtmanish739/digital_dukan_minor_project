@@ -6,7 +6,8 @@ part of 'order_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderModel _$OrderModelFromJson(Map<String, dynamic> json,String id) => OrderModel.withId(
+OrderModel _$OrderModelFromJson(Map<String, dynamic> json, String id) =>
+    OrderModel.withId(
       id,
       json['userId'] as String,
       json['shopId'] as String,
