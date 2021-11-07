@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:digital_dukan_minor_project/main.dart';
+import 'package:digital_dukan_minor_project/models/user_type.dart';
 import 'package:flutter/material.dart';
 import 'intro_slides/intro_slides.dart';
 
@@ -13,10 +15,20 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.pop(context);
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => IntroSlides(
-                title: "digital dukaan",
-              )));
+      if (box.containsKey("type")) {
+        UserType type = box.get("type");
+        if (type == UserType.customer) {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/home', (Route<dynamic> route) => false);
+        } else {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              '/ownerHome', (Route<dynamic> route) => false);
+        }
+      } else
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => IntroSlides(
+                  title: "digital dukaan",
+                )));
     });
   }
 

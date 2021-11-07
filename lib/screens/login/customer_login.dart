@@ -27,7 +27,10 @@ class _CustomerLoginState extends State<CustomerLogin> {
         ),
         body: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
-            if (state is LoginLoaded) Navigator.pushNamed(context, '/home');
+            if (state is LoginLoaded)
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/home', (Route<dynamic> route) => false);
+
             if (state is LoginError) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.message)));
