@@ -14,5 +14,6 @@ class CartEventRemove extends CartEvent {
   final int index;
 
   CartEventRemove(this.index);
-
 }
+
+class CartEventCreateOrder extends CartEvent {}

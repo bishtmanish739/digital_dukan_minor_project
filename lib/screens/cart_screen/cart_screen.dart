@@ -13,6 +13,14 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Cart"),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          BlocProvider.of<CartBloc>(context).add(CartEventCreateOrder());
+        },
+        label: Text('Order'),
+        icon: Icon(Icons.shop),
+        backgroundColor: Colors.pink,
+      ),
       body: BlocConsumer<CartBloc, CartState>(
         listener: (context, state) {
           if (state is CartMessage) {
@@ -86,7 +94,7 @@ class CartScreen extends StatelessWidget {
                                                   color: Colors.red,
                                                 ),
                                                 onPressed: () {
-                                                   BlocProvider.of<CartBloc>(
+                                                  BlocProvider.of<CartBloc>(
                                                           context)
                                                       .add(CartEventRemove(
                                                           index));

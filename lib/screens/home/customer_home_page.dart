@@ -3,6 +3,7 @@ import 'package:digital_dukan_minor_project/customer_home.dart';
 import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/screens/cart_screen/cart_screen.dart';
 import 'package:digital_dukan_minor_project/screens/list_of_shops/list_of_shops.dart';
+import 'package:digital_dukan_minor_project/screens/my_orders/my_orders.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
       style: optionStyle,
     ),
     CartScreen(),
+    MyOrders(false),
   ];
   static int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -40,8 +42,17 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
     return Scaffold(
       key: customerDrawerKey,
       drawer: Drawer1(),
-      body: Container(
-        child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: <Widget>[
+          ListOfShops(),
+          Text(
+            'Profile',
+            style: optionStyle,
+          ),
+          CartScreen(),
+          MyOrders(false),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -56,6 +67,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
             label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            label: "Orders",
           ),
         ],
         currentIndex: _selectedIndex,

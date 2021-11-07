@@ -1,4 +1,5 @@
 import 'package:digital_dukan_minor_project/bloc/cart_bloc/cart_bloc.dart';
+import 'package:digital_dukan_minor_project/bloc/fetch_orders/fetch_orders_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/fetch_products/fetch_products_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/list_of_shops/list_of_shops_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/login_bloc/login_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:digital_dukan_minor_project/models/user_type.dart';
 import 'package:digital_dukan_minor_project/repository/fetch_products_repo.dart';
 import 'package:digital_dukan_minor_project/repository/fetch_shops.dart';
 import 'package:digital_dukan_minor_project/repository/login_repo.dart';
+import 'package:digital_dukan_minor_project/repository/order_repo.dart';
 import 'package:digital_dukan_minor_project/repository/owner_register_repo.dart';
 import 'package:digital_dukan_minor_project/repository/product_details_repo.dart';
 import 'package:digital_dukan_minor_project/screens/add_product/add_product.dart';
@@ -68,6 +70,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ListOfShopsBloc>(
           create: (BuildContext context) => ListOfShopsBloc(FetchShopsRepo()),
+        ),
+        BlocProvider<FetchOrdersBloc>(
+          create: (BuildContext context) => FetchOrdersBloc(OrderRepo()),
         ),
       ],
       child: MaterialApp(
