@@ -16,4 +16,10 @@ class CartEventRemove extends CartEvent {
   CartEventRemove(this.index);
 }
 
-class CartEventCreateOrder extends CartEvent {}
+class CartEventCreateOrder extends CartEvent {
+  final Payment payment;
+  final Delivery delivery;
+
+  CartEventCreateOrder(this.payment, this.delivery);
+  
+}

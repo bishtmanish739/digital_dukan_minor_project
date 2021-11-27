@@ -6,9 +6,7 @@ part of 'order_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderModel _$OrderModelFromJson(Map<String, dynamic> json, String id) =>
-    OrderModel.withId(
-      id,
+OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       json['userId'] as String,
       json['shopId'] as String,
       (json['products'] as List<dynamic>)
@@ -16,15 +14,25 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json, String id) =>
           .toList(),
       _$enumDecode(_$StatusEnumMap, json['orderStatus']),
       _$enumDecode(_$PaymentEnumMap, json['payment']),
-    );
+      _$enumDecode(_$DeliveryEnumMap, json['delivery']),
+      json['otp'] as int,
+    )
+      ..id = json['id'] as String?
+      ..shopModel = json['shopModel'] == null
+          ? null
+          : ShopModel.fromJson(json['shopModel'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'shopId': instance.shopId,
       'userId': instance.userId,
       'products': instance.products.map((e) => e.toJson()).toList(),
       'orderStatus': _$StatusEnumMap[instance.orderStatus],
       'payment': _$PaymentEnumMap[instance.payment],
+      'shopModel': instance.shopModel?.toJson(),
+      'delivery': _$DeliveryEnumMap[instance.delivery],
+      'otp': instance.otp,
     };
 
 K _$enumDecode<K, V>(
@@ -55,11 +63,18 @@ K _$enumDecode<K, V>(
 
 const _$StatusEnumMap = {
   Status.pending: 'pending',
+  Status.ready: 'ready',
+  Status.completed: 'completed',
   Status.accepted: 'accepted',
   Status.rejected: 'rejected',
 };
 
 const _$PaymentEnumMap = {
   Payment.cash: 'cash',
-  Payment.upi: 'upi',
+  Payment.paid: 'paid',
+};
+
+const _$DeliveryEnumMap = {
+  Delivery.pickup: 'pickup',
+  Delivery.delivery: 'delivery',
 };

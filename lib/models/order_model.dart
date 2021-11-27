@@ -4,8 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'order_model.g.dart';
 
-enum Status { pending, accepted, rejected }
-enum Payment { cash, upi }
+enum Status { pending, ready, completed, accepted, rejected }
+enum Payment { cash, paid }
+enum Delivery { pickup, delivery }
 
 @JsonSerializable(explicitToJson: true)
 class OrderModel {
@@ -16,12 +17,14 @@ class OrderModel {
   Status orderStatus;
   Payment payment;
   ShopModel? shopModel;
+  Delivery delivery;
+  int otp;
 
-  OrderModel(
-      this.userId, this.shopId, this.products, this.orderStatus, this.payment);
+  OrderModel(this.userId, this.shopId, this.products, this.orderStatus,
+      this.payment, this.delivery, this.otp);
   OrderModel.withId(this.id, this.userId, this.shopId, this.products,
-      this.orderStatus, this.payment);
-  factory OrderModel.fromJson(Map<String, dynamic> json, String id) =>
-      _$OrderModelFromJson(json, id);
+      this.orderStatus, this.payment, this.delivery, this.otp);
+  factory OrderModel.fromJson(Map<String, dynamic> json) =>
+      _$OrderModelFromJson(json);
   Map<String, dynamic> toJson() => _$OrderModelToJson(this);
 }
