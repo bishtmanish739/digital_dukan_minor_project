@@ -11,7 +11,7 @@ class FetchShopsRepo {
       querySnapshot.docs.forEach((doc) {
         Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
         ShopModel p = new ShopModel(
-            map["shopName"], Address.fromJson(map['address']), doc.id);
+            map["shopName"], Address.fromJson(map['address']), doc.id, map["upi"],);
         shopList.add(p);
       });
     }).catchError((onError) => throw Exception(onError));

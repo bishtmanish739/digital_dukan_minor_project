@@ -5,7 +5,7 @@ abstract class CartEvent {}
 
 class CartEventAdd extends CartEvent {
   final Product product;
-  final String shopId;
+  final ShopModel shopId;
 
   CartEventAdd(this.product, this.shopId);
 }

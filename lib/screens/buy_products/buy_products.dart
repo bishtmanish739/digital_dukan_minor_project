@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digital_dukan_minor_project/bloc/fetch_products/fetch_products_bloc.dart';
 import 'package:digital_dukan_minor_project/models/product.dart';
+import 'package:digital_dukan_minor_project/models/shop_model.dart';
 import 'package:digital_dukan_minor_project/screens/buy_products/view_products.dart';
 import 'package:digital_dukan_minor_project/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuyProducts extends StatefulWidget {
-  final String shopId;
+  final ShopModel shopId;
   const BuyProducts(this.shopId);
 
   @override
@@ -18,7 +19,7 @@ class _BuyProductsState extends State<BuyProducts> {
   @override
   void initState() {
     BlocProvider.of<FetchProductsBloc>(context)
-        .add(FetchListOfProducts(widget.shopId));
+        .add(FetchListOfProducts(widget.shopId.shopId));
     super.initState();
   }
 
@@ -31,7 +32,7 @@ class _BuyProductsState extends State<BuyProducts> {
       body: RefreshIndicator(
         onRefresh: () async {
           BlocProvider.of<FetchProductsBloc>(context)
-              .add(FetchListOfProducts(widget.shopId));
+              .add(FetchListOfProducts(widget.shopId.shopId));
         },
         child: BlocConsumer<FetchProductsBloc, FetchProductsState>(
           listener: (context, state) {

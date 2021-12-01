@@ -7,8 +7,9 @@ class ShopModel {
   String shopId;
   String shopName;
   Address address;
+  String upi;
 
-  ShopModel(this.shopName, this.address, this.shopId);
+  ShopModel(this.shopName, this.address, this.shopId,this.upi);
   factory ShopModel.fromJson(Map<String, dynamic> json) =>
       _$ShopModelFromJson(json);
   Map<String, dynamic> toJson() => _$ShopModelToJson(this);

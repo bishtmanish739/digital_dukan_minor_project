@@ -1,5 +1,6 @@
 import 'package:digital_dukan_minor_project/bloc/cart_bloc/cart_bloc.dart';
 import 'package:digital_dukan_minor_project/models/order_model.dart';
+import 'package:digital_dukan_minor_project/screens/payment_screen/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -86,9 +87,15 @@ class _OrderModeSettingsState extends State<OrderModeSettings> {
                           paymentType = Payment.cash;
                         else
                           paymentType = Payment.paid;
-                        BlocProvider.of<CartBloc>(context)
-                            .add(CartEventCreateOrder(paymentType, deliveryType));
-                        Navigator.pop(context);
+                        if(paymentType==Payment.paid){
+                              Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => PaymentScreen(paymentType: paymentType,delivery: deliveryType,)));
+                        }
+                        else{
+                             BlocProvider.of<CartBloc>(context)
+                              .add(CartEventCreateOrder(paymentType,deliveryType));
+                          Navigator.pop(context);
+                        }   
                       },
                       child: Text("Proceed")),
                 ),

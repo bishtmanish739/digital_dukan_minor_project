@@ -29,7 +29,7 @@ class OrderRepo {
       await owners.doc(map['shopId']).get().then((value) {
         var map = value.data() as Map<String, dynamic>;
         shop = new ShopModel(
-            map["shopName"], Address.fromJson(map['address']), doc.id);
+            map["shopName"], Address.fromJson(map['address']), doc.id, map["upi"],);
       }).catchError((onError) => throw Exception(onError));
       map["id"] = doc.id;
       OrderModel p = new OrderModel.fromJson(map);

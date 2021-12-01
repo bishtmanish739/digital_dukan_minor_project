@@ -28,7 +28,7 @@ class _MyOrdersState extends State<MyOrders> {
         title: Text("Your orders"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
+        onRefresh: ()async {
           BlocProvider.of<FetchOrdersBloc>(context)
               .add(FetchOrders(widget.isShopOwner));
         },
@@ -66,10 +66,14 @@ class _MyOrdersState extends State<MyOrders> {
                                     state.list[index].products.length
                                         .toString()),
                               ),
-                              !widget.isShopOwner? Padding(
-                                padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
-                                child: Text("OTP: "+state.list[index].otp.toString()),
-                              ):Container(),
+                              !widget.isShopOwner
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0, bottom: 8.0),
+                                      child: Text("OTP: " +
+                                          state.list[index].otp.toString()),
+                                    )
+                                  : Container(),
                               ExpansionTile(
                                   title: Text('Click to view products'),
                                   trailing: Icon(
@@ -115,8 +119,9 @@ class _MyOrdersState extends State<MyOrders> {
                                                       new BorderRadius.circular(
                                                           8.0))),
                                           onPressed: () {
-                                            _displayTextInputDialog(context,state.list[index],index);
-                                         },
+                                            _displayTextInputDialog(context,
+                                                state.list[index], index);
+                                          },
                                           child: Row(
                                             children: [
                                               new Text(
@@ -277,14 +282,16 @@ class _MyOrdersState extends State<MyOrders> {
 
   TextEditingController _textFieldController = TextEditingController();
 
-  Future<void> _displayTextInputDialog(BuildContext context,OrderModel orderModel,int index) async {
+  Future<void> _displayTextInputDialog(
+      BuildContext context, OrderModel orderModel, int index) async {
     return showDialog(
       context: context,
       builder: (context) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: AlertDialog(
-            title: Text('Enter OTP sent to customer to verify order is delivered'),
+            title:
+                Text('Enter OTP sent to customer to verify order is delivered'),
             content: TextField(
               keyboardType: TextInputType.number,
               controller: _textFieldController,
@@ -300,17 +307,15 @@ class _MyOrdersState extends State<MyOrders> {
               ElevatedButton(
                 child: Text('Verify'),
                 onPressed: () {
-                    if(orderModel.otp==int.parse(_textFieldController.text)){
-                      BlocProvider.of<FetchOrdersBloc>(
-                                    context)
-                                .add(ChangeOrderStatus(
-                                    Status.completed, index));
-                                              
-                        Navigator.pop(context);
-                    }
-                    else{
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Wrong OTP")));
-                    }
+                  if (orderModel.otp == int.parse(_textFieldController.text)) {
+                    BlocProvider.of<FetchOrdersBloc>(context)
+                        .add(ChangeOrderStatus(Status.completed, index));
+
+                    Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text("Wrong OTP")));
+                  }
                 },
               ),
             ],
