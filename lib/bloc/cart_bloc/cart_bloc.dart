@@ -36,9 +36,16 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         } else {
           //generate 4 digit otp
           Random random = new Random();
-          int otp=random.nextInt(9000) + 1000;
-          OrderModel orderModel = new OrderModel(box.get("phone"), shopId!.shopId,
-              cartProducts, Status.pending, event.payment, event.delivery,otp);
+          int otp = random.nextInt(9000) + 1000;
+          OrderModel orderModel = new OrderModel(
+              box.get("phone"),
+              shopId!.shopId,
+              cartProducts,
+              Status.pending,
+              event.payment,
+              event.delivery,
+              otp);
+          if (event.ref != null) orderModel.ref = event.ref;
           OrderRepo repo = new OrderRepo();
           try {
             await repo.createOrder(orderModel);
