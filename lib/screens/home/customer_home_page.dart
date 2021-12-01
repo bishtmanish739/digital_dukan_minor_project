@@ -37,10 +37,6 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
         index: _selectedIndex,
         children: <Widget>[
           ListOfShops(),
-          Text(
-            'Profile',
-            style: optionStyle,
-          ),
           CartScreen(),
           MyOrders(false),
         ],
@@ -50,10 +46,6 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_rounded),
-            label: "Profile",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
