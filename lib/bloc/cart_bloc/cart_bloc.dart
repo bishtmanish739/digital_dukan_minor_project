@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:digital_dukan_minor_project/main.dart';
 import 'package:digital_dukan_minor_project/models/order_model.dart';
@@ -31,8 +33,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(CartMessage("No item to order"));
           emit(CartLoaded(cartProducts));
         } else {
+          //generate 4 digit otp
+          Random random = new Random();
+          int otp=random.nextInt(9000) + 1000;
           OrderModel orderModel = new OrderModel(box.get("phone"), shopId,
-              cartProducts, Status.pending, Payment.cash);
+              cartProducts, Status.pending, event.payment, event.delivery,otp);
           OrderRepo repo = new OrderRepo();
           try {
             await repo.createOrder(orderModel);

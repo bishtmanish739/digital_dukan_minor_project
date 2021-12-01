@@ -31,7 +31,8 @@ class OrderRepo {
         shop = new ShopModel(
             map["shopName"], Address.fromJson(map['address']), doc.id);
       }).catchError((onError) => throw Exception(onError));
-      OrderModel p = new OrderModel.fromJson(map, doc.id);
+      map["id"] = doc.id;
+      OrderModel p = new OrderModel.fromJson(map);
       p.shopModel = shop!;
       list.add(p);
     }
