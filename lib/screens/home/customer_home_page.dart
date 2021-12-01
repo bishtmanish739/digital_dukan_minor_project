@@ -72,6 +72,10 @@ class _CustomerHomePageState extends State<CustomerHomePage> {
             icon: Icon(Icons.shop),
             label: "Orders",
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.airport_shuttle_rounded),
+            label: "Track Orders",
+          ),
         ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.green[800],
