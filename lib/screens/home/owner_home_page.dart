@@ -30,7 +30,6 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
         index: _selectedIndex,
         children: <Widget>[
           OwnerProducts(),
-          OwnerProducts(),
           MyOrders(true),
         ],
       ),
@@ -40,10 +39,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
             icon: Icon(Icons.home),
             label: "Products",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_rounded),
-            label: "Profile",
-          ),
+        
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
             label: "Orders",
