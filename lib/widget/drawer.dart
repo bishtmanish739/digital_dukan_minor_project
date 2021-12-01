@@ -1,10 +1,17 @@
 import 'package:digital_dukan_minor_project/main.dart';
+import 'package:digital_dukan_minor_project/models/user_type.dart';
+import 'package:digital_dukan_minor_project/screens/my_orders/completed_orders.dart';
+import 'package:digital_dukan_minor_project/screens/my_orders/rejected_orders.dart';
+import 'package:digital_dukan_minor_project/screens/profile_screen/customer_profile.dart';
+import 'package:digital_dukan_minor_project/screens/profile_screen/owner_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:share/share.dart';
 
 class Drawer1 extends StatefulWidget {
-  const Drawer1({Key? key}) : super(key: key);
+  final UserType type;
+  Drawer1(this.type);
 
   @override
   State<Drawer1> createState() => _Drawer1State();
@@ -39,45 +46,56 @@ class _Drawer1State extends State<Drawer1> {
                   )
                 ],
               )),
-          ListTile(
+             
+           ListTile(
             title: Text(
-              'Home',
+              'Completed Orders',
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+                     Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CompletedOrders(UserType.owner==widget.type)));
+            },
             leading: Icon(
-              Icons.home,
+              Icons.shop,
             ),
           ),
-          ListTile(
+           ListTile(
             title: Text(
-              'Nearby Shop',
+              'Rejected Orders',
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+                     Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RejectedOrders(UserType.owner==widget.type)));
+            },
             leading: Icon(
               Icons.shop,
             ),
           ),
           ListTile(
             title: Text(
-              'My Cart',
+              'Profile ',
             ),
-            onTap: () {},
-            leading: Icon(Icons.shopping_cart),
-          ),
-          ListTile(
-            title: Text(
-              'Setting ',
-            ),
-            onTap: () {},
-            leading: Icon(
-              Icons.settings,
-            ),
+            onTap: () {
+              Navigator.pop(context);
+              if (widget.type == UserType.customer)
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CustomerProfile()));
+              else
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => OwnerProfile()));
+            },
+            leading: Icon(Icons.person),
           ),
           ListTile(
             title: Text(
               'Share This App',
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              shareApp();
+            },
             leading: Icon(
               Icons.share,
             ),
@@ -100,5 +118,11 @@ class _Drawer1State extends State<Drawer1> {
         ],
       ),
     );
+  }
+
+  void shareApp() {
+    Share.share("Try the Digital Store App," +
+        " it is developed to help both shop owners & buyers, find you nearby shops & enjoy shopping" +
+        "\n  APP_LINK ");
   }
 }

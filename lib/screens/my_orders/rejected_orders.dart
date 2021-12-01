@@ -1,23 +1,24 @@
 import 'package:digital_dukan_minor_project/bloc/fetch_orders/fetch_orders_bloc.dart';
 import 'package:digital_dukan_minor_project/models/order_model.dart';
+import 'package:digital_dukan_minor_project/repository/order_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyOrders extends StatefulWidget {
+class RejectedOrders extends StatefulWidget {
   final bool isShopOwner;
 
-  const MyOrders(this.isShopOwner);
+  const RejectedOrders(this.isShopOwner);
 
   @override
-  State<MyOrders> createState() => _MyOrdersState();
+  State<RejectedOrders> createState() => _RejectedOrdersState();
 }
 
-class _MyOrdersState extends State<MyOrders> {
+class _RejectedOrdersState extends State<RejectedOrders> {
+  FetchOrdersBloc bloc = new FetchOrdersBloc(OrderRepo());
   @override
   void initState() {
-    BlocProvider.of<FetchOrdersBloc>(context)
-        .add(FetchOrders(widget.isShopOwner));
+    bloc.add(FetchOrdersRejected(widget.isShopOwner));
     super.initState();
   }
 
@@ -29,10 +30,10 @@ class _MyOrdersState extends State<MyOrders> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          BlocProvider.of<FetchOrdersBloc>(context)
-              .add(FetchOrders(widget.isShopOwner));
+          bloc.add(FetchOrdersRejected(widget.isShopOwner));
         },
-        child: BlocConsumer<FetchOrdersBloc, FetchOrdersState>(
+        child: BlocConsumer(
+          bloc: bloc,
           listener: (context, state) {
             if (state is FetchOrdersError) {
               ScaffoldMessenger.of(context)
@@ -45,7 +46,6 @@ class _MyOrdersState extends State<MyOrders> {
                 return Center(
                   child: Text("No order found"),
                 );
-
               return ListView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
