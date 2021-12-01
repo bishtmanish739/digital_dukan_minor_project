@@ -1,5 +1,5 @@
-import 'package:digital_dukan_minor_project/customer_cart.dart';
 import 'package:digital_dukan_minor_project/main.dart';
+import 'package:digital_dukan_minor_project/models/user_type.dart';
 import 'package:digital_dukan_minor_project/screens/my_orders/my_orders.dart';
 import 'package:digital_dukan_minor_project/screens/owner_products/owner_products.dart';
 import 'package:digital_dukan_minor_project/widget/drawer.dart';
@@ -14,18 +14,7 @@ class OwnerHomePage extends StatefulWidget {
 }
 
 class _OwnerHomePageState extends State<OwnerHomePage> {
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  static List<Widget> _widgetOptions = <Widget>[
-    OwnerProducts(),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-    CustomerCart(),
-  ];
-  static int _selectedIndex = 0;
+ static int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -36,7 +25,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: ownerDrawerKey,
-      drawer: Drawer1(),
+      drawer: Drawer1(UserType.owner),
       body: IndexedStack(
         index: _selectedIndex,
         children: <Widget>[

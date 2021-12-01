@@ -4,6 +4,7 @@ import 'package:digital_dukan_minor_project/bloc/fetch_products/fetch_products_b
 import 'package:digital_dukan_minor_project/bloc/list_of_shops/list_of_shops_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/login_bloc/login_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/product_details/product_details_bloc.dart';
+import 'package:digital_dukan_minor_project/bloc/profile_bloc/profile_bloc.dart';
 import 'package:digital_dukan_minor_project/bloc/register_bloc/register_bloc.dart';
 import 'package:digital_dukan_minor_project/models/user_type.dart';
 import 'package:digital_dukan_minor_project/repository/fetch_products_repo.dart';
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<CartBloc>(
           create: (BuildContext context) => CartBloc(),
+        ), 
+        BlocProvider<ProfileBloc>(
+          create: (BuildContext context) => ProfileBloc(),
         ),
         BlocProvider<FetchProductsBloc>(
           create: (BuildContext context) =>

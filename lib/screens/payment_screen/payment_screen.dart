@@ -1,13 +1,19 @@
+import 'package:digital_dukan_minor_project/bloc/cart_bloc/cart_bloc.dart';
+import 'package:digital_dukan_minor_project/models/order_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:upi_india/upi_india.dart';
 
-
-class Screen extends StatefulWidget {
+class PaymentScreen extends StatefulWidget {
+  final Payment? paymentType;
+  final Delivery? delivery;
+  const PaymentScreen({Key? key, this.paymentType, this.delivery})
+      : super(key: key);
   @override
-  _ScreenState createState() => _ScreenState();
+  _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _ScreenState extends State<Screen> {
+class _PaymentScreenState extends State<PaymentScreen> {
   Future<UpiResponse>? _transaction;
   UpiIndia _upiIndia = UpiIndia();
   List<UpiApp>? apps;
@@ -35,13 +41,17 @@ class _ScreenState extends State<Screen> {
   }
 
   Future<UpiResponse> initiateTransaction(UpiApp app) async {
+    double totalAmount = 0;
+    BlocProvider.of<CartBloc>(context).cartProducts.forEach((element) {
+      totalAmount += int.parse(element.price);
+    });
     return _upiIndia.startTransaction(
       app: app,
-      receiverUpiId: "test@paytm",
-      receiverName: 'TestingUpiIndiaPlugin',
+      receiverUpiId: BlocProvider.of<CartBloc>(context).shopId!.upi,
+      receiverName: BlocProvider.of<CartBloc>(context).shopId!.shopName,
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: 1.00,
+      amount: totalAmount,
     );
   }
 
@@ -65,7 +75,7 @@ class _ScreenState extends State<Screen> {
               return GestureDetector(
                 onTap: () {
                   _transaction = initiateTransaction(app);
-                  setState(() {});
+                 setState(() {});
                 },
                 child: Container(
                   height: 100,
@@ -108,15 +118,20 @@ class _ScreenState extends State<Screen> {
   void _checkTxnStatus(String status) {
     switch (status) {
       case UpiPaymentStatus.SUCCESS:
+        BlocProvider.of<CartBloc>(context)
+            .add(CartEventCreateOrder(widget.paymentType!, widget.delivery!));
         print('Transaction Successful');
         break;
       case UpiPaymentStatus.SUBMITTED:
+    
         print('Transaction Submitted');
         break;
       case UpiPaymentStatus.FAILURE:
+        
         print('Transaction Failed');
         break;
       default:
+
         print('Received an Unknown transaction status');
     }
   }
@@ -152,14 +167,15 @@ class _ScreenState extends State<Screen> {
           Expanded(
             child: FutureBuilder(
               future: _transaction,
-              builder: (BuildContext context, AsyncSnapshot<UpiResponse> snapshot) {
+              builder:
+                  (BuildContext context, AsyncSnapshot<UpiResponse> snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasError) {
                     return Center(
                       child: Text(
                         _upiErrorHandler(snapshot.error.runtimeType),
                         style: header,
-                      ), // Print's text message on screen
+                      ), // Print's text message on PaymentScreen
                     );
                   }
 

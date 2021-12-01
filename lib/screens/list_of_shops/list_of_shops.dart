@@ -50,7 +50,7 @@ class _ListOfShopsState extends State<ListOfShops> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => BuyProducts(
-                                        state.shops[index].shopId)));
+                                        state.shops[index])));
                           },
                           child: Card(
                             elevation: 8,
