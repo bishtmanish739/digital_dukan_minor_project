@@ -19,6 +19,7 @@ class OrderModel {
   ShopModel? shopModel;
   Delivery delivery;
   int otp;
+  String? ref;
 
   OrderModel(this.userId, this.shopId, this.products, this.orderStatus,
       this.payment, this.delivery, this.otp);

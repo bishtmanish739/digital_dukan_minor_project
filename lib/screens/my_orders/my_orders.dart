@@ -71,6 +71,18 @@ class _MyOrdersState extends State<MyOrders> {
                                     state.list[index].products.length
                                         .toString()),
                               ),
+                             state.list[index].ref!=null?  Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0, bottom: 8.0),
+                                      child: Text("Reference No.: " +
+                                         state.list[index].ref.toString()),
+                                    ):Container(),
+                              Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0, bottom: 8.0),
+                                      child: Text("Payment Type: " +
+                                          state.list[index].payment.toString().split('.')[1].toUpperCase()),
+                                    ),
                               !widget.isShopOwner
                                   ? Padding(
                                       padding: const EdgeInsets.only(

@@ -20,7 +20,8 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       ..id = json['id'] as String?
       ..shopModel = json['shopModel'] == null
           ? null
-          : ShopModel.fromJson(json['shopModel'] as Map<String, dynamic>);
+          : ShopModel.fromJson(json['shopModel'] as Map<String, dynamic>)
+      ..ref = json['ref'] as String?;
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
     <String, dynamic>{
@@ -33,6 +34,7 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'shopModel': instance.shopModel?.toJson(),
       'delivery': _$DeliveryEnumMap[instance.delivery],
       'otp': instance.otp,
+      'ref': instance.ref,
     };
 
 K _$enumDecode<K, V>(

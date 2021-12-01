@@ -39,7 +39,6 @@ dependencies:
   cached_network_image: ^3.1.0
   razorpay_flutter: ^1.2.7 
   http: ^0.13.4
-  upi_india: ^3.0.1
   share: ^2.0.4
  
   

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:digital_dukan_minor_project/bloc/cart_bloc/cart_bloc.dart';
 import 'package:digital_dukan_minor_project/screens/order_mode_settings/order_mode_settings.dart';
-import 'package:digital_dukan_minor_project/screens/payment_screen/payment_screen.dart';
 import 'package:digital_dukan_minor_project/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +22,12 @@ class _CartScreenState extends State<CartScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           //  BlocProvider.of<CartBloc>(context).add(CartEventCreateOrder());
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => OrderModeSettings()));
+          if (BlocProvider.of<CartBloc>(context).cartProducts.length > 0)
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => OrderModeSettings()));
+          else
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Add atleast one item in cart")));
         },
         label: Text('Order'),
         icon: Icon(Icons.shop),
