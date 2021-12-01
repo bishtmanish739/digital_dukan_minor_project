@@ -71,6 +71,12 @@ class _MyOrdersState extends State<MyOrders> {
                                     state.list[index].products.length
                                         .toString()),
                               ),
+                              Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 16.0, bottom: 8.0),
+                                      child: Text("Payment Type: " +
+                                          state.list[index].payment.toString().split('.')[1].toUpperCase()),
+                                    ),
                               !widget.isShopOwner
                                   ? Padding(
                                       padding: const EdgeInsets.only(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:digital_dukan_minor_project/bloc/cart_bloc/cart_bloc.dart';
 import 'package:digital_dukan_minor_project/models/order_model.dart';
 import 'package:flutter/material.dart';
@@ -45,11 +47,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
     BlocProvider.of<CartBloc>(context).cartProducts.forEach((element) {
       totalAmount += int.parse(element.price);
     });
+    final transactionRef = Random.secure().nextInt(1 << 32).toString();
+    print("Starting transaction with id $transactionRef");
     return _upiIndia.startTransaction(
       app: app,
       receiverUpiId: BlocProvider.of<CartBloc>(context).shopId!.upi,
       receiverName: BlocProvider.of<CartBloc>(context).shopId!.shopName,
-      transactionRefId: 'TestingUpiIndiaPlugin',
+      transactionRefId: transactionRef,
       transactionNote: 'Not actual. Just an example.',
       amount: totalAmount,
     );
